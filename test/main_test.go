@@ -6,7 +6,7 @@ import (
 )
 
 func TestMain(t *testing.T) {
-	t.Run("Test Pertemuan 1", func(t *testing.T) {
-		fmt.Println("Pertemuan 1")
+	t.Run("Test Pertemuan 2", func(t *testing.T) {
+		fmt.Println("Pertemuan 2")
 	})
 }
