@@ -68,14 +68,15 @@ func (m *Mahasiswa) Delete(db *sql.DB) error {
 	return err
 }
 
-func (m *Mahasiswa) Get(db *sql.DB) (*Mahasiswa, error) {
+func Get(db *sql.DB, id string) (*Mahasiswa, error) {
 
+	m := &Mahasiswa{}
 	each := m.Structur()
 	_, dst := each.Fields()
 	query := fmt.Sprintf("SELECT * FROM %s WHERE %s = ?", "mahasiswa", "NPM")
 
 	// isinya akan dimasukan kedalam var dst yang dideklarasikan diatas
-	err := db.QueryRow(query, m.NPM).Scan(dst...)
+	err := db.QueryRow(query, id).Scan(dst...)
 	if err != nil {
 		return nil, err
 	}
@@ -93,14 +94,16 @@ func GetAllMahasiswa(db *sql.DB) ([]*Mahasiswa, error) {
 	defer data.Close()
 
 	var result []*Mahasiswa
+
 	for data.Next() {
 		each := m.Structur()
 		_, dst := each.Fields()
-		err := data.Scan(dst...)
 
+		err := data.Scan(dst...)
 		if err != nil {
 			return nil, err
 		}
+		fmt.Println(each)
 		result = append(result, each)
 	}
 

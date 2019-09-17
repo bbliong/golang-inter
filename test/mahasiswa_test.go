@@ -65,6 +65,7 @@ func TestMahasiswa(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
+
 	})
 
 	t.Run("Testing delete mahasiswa", func(t *testing.T) {
